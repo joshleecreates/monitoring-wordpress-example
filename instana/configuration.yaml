@@ -1,0 +1,3 @@
+com.instana.plugin.mariadb:
+  user: 'root'
+  password: 'insecure'

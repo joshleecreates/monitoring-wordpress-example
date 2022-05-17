@@ -1,0 +1,23 @@
+version: '2'
+services:
+  database:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: insecure
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
+  wordpress:
+    build: ./wordpress/
+    depends_on:
+      - database
+    links:
+      - database:mysql
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
